@@ -61,4 +61,26 @@ public class ABankAccount
         Assert.That(sut.Balance, Is.EqualTo(expectedAmount));
         
     }
+
+    [Test]
+    public void ShouldCalculateAndAddMonthlyInerestToBalance()
+    {
+        // Arrange
+        decimal initialBalance = 100m;
+        double annualInterestRate = 0.5;
+        var sut = new BankAccount(initialBalance, annualInterestRate);
+
+
+        decimal monthlyInterest = initialBalance * (decimal)(annualInterestRate/12);
+        decimal expectedBalanceAfterInterest = initialBalance + monthlyInterest;
+
+        // Act
+        sut.CalculateInterest();
+
+        // Assert
+        // Post 3: Balance == Balance@pre + monthlyInterest
+
+        Assert.That(sut.Balance, Is.EqualTo(expectedBalanceAfterInterest));
+
+    }
 }

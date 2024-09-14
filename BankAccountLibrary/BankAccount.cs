@@ -22,6 +22,14 @@ namespace BankAccountLibrary
         {
             Balance -= withdrawAmount;
         }
+
+        public void CalculateInterest()
+        {
+            double monthlyInterestRate = AnnualInterestRate / 12;
+            decimal monthlyInterest = Balance * (decimal)monthlyInterestRate;
+            Balance += monthlyInterest;
+
+        }
     }
 
 }
