@@ -17,6 +17,11 @@ namespace BankAccountLibrary
         {
             Balance += depositAmount;
         }
+
+        public void Withdraw(decimal withdrawAmount)
+        {
+            Balance -= withdrawAmount;
+        }
     }
 
 }

@@ -22,7 +22,7 @@ public class ABankAccount
     }
 
     [Test]
-    public void ShouldInceaseBalanceAfterDeposit()
+    public void ShouldIncreaseBalanceAfterDeposit()
     {
         //Arrange
         decimal initialBalance = 100m;
@@ -30,19 +30,35 @@ public class ABankAccount
         var sut = new BankAccount(initialBalance, annualInterestRate);
 
         decimal depositAmount = 100m;
-        // Actp
+        decimal expectedAmount = initialBalance + depositAmount;
+
+        // Act
         sut.Deposit(depositAmount);
 
         // Post 1: Balance == Balance@pre + depositAmount
         // Assert
 
-        Assert.That(sut.Balance, Is.EqualTo(200m));
+        Assert.That(sut.Balance, Is.EqualTo(expectedAmount));
     }
 
     [Test]
     public void ShouldDecreaseBalanceAfterWithdrawal()
-    { 
-        //Arrange
+    {
+        // Arrange
+        decimal initialBalance = 100m;
+        double annualInterestRate = 0.5;
+        var sut = new BankAccount(initialBalance,annualInterestRate);
+
+        decimal withdrawAmount = 50m;
+        decimal expectedAmount = initialBalance - withdrawAmount;
+
+        // Act
+        sut.Withdraw(withdrawAmount);
+
+        // Assert
+        // Post 2: Balance == Balance@pre - withdrawAmount
+
+        Assert.That(sut.Balance, Is.EqualTo(expectedAmount));
         
     }
 }

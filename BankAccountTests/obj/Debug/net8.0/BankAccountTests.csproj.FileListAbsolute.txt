@@ -100,3 +100,4 @@ C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1
 C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1\BankAccountSystem\BankAccountTests\obj\Debug\net8.0\BankAccountTests.pdb
 C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1\BankAccountSystem\BankAccountTests\obj\Debug\net8.0\BankAccountTests.genruntimeconfig.cache
 C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1\BankAccountSystem\BankAccountTests\obj\Debug\net8.0\ref\BankAccountTests.dll
+C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1\BankAccountSystem\BankAccountTests\obj\Debug\net8.0\BankAccountTests.sourcelink.json

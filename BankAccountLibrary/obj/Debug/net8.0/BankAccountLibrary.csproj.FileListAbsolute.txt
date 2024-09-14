@@ -9,3 +9,4 @@ C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1
 C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1\BankAccountSystem\BankAccountLibrary\obj\Debug\net8.0\refint\BankAccountLibrary.dll
 C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1\BankAccountSystem\BankAccountLibrary\obj\Debug\net8.0\BankAccountLibrary.pdb
 C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1\BankAccountSystem\BankAccountLibrary\obj\Debug\net8.0\ref\BankAccountLibrary.dll
+C:\Users\JOSHIP1\OneDrive - East Tennessee State University\Fall24\Soft v&v\LAB1\BankAccountSystem\BankAccountLibrary\obj\Debug\net8.0\BankAccountLibrary.sourcelink.json
