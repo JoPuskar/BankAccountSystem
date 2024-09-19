@@ -83,4 +83,33 @@ public class ABankAccount
         Assert.That(sut.Balance, Is.EqualTo(expectedBalanceAfterInterest));
 
     }
+
+    [Test]
+    public void ShouldSubtractMonthlyServiceChargeAndResetCounters()
+    {
+        // Arrange
+        decimal initialBalance = 100m;
+        double annualInterestRate = 0.5;
+        decimal depositAmount = 50m;
+        decimal withdrawAmount = 20m;
+
+        var sut = new BankAccount(initialBalance, annualInterestRate);
+
+        // Act
+        sut.Deposit(depositAmount);
+        sut.Withdraw(withdrawAmount);
+
+        decimal monthlyServiceCharge = 10m;
+        sut.AddMonthlyServiceCharge(monthlyServiceCharge);
+        sut.MonthlyProcess();
+
+        decimal expectedBalanceBeforeInterest = initialBalance - withdrawAmount + depositAmount - monthlyServiceCharge;
+        decimal expectedBalanceAfterInterest = expectedBalanceBeforeInterest * (1 + ((decimal)annualInterestRate / 12));
+        // Assert
+        Assert.That(sut.Balance, Is.EqualTo(expectedBalanceAfterInterest).Within(0.00001));
+        Assert.That(sut.NumberOfDeposits, Is.EqualTo(0));
+        Assert.That(sut.NumberOfWithdrawals, Is.EqualTo(0));
+        Assert.That(sut.MonthlyServiceCharge, Is.EqualTo(0));
+
+    }
 }

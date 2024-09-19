@@ -31,6 +31,9 @@ bld/
 # Visual Studio Code workspace settings
 .vscode/
 
+# Visual Studio
+.vs/
+
 # Rider
 .idea/
 *.sln.iml
