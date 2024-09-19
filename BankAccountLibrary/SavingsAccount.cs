@@ -38,7 +38,7 @@ namespace BankAccountLibrary
         }
         public override void Deposit(decimal depositAmount)
         {
-            if (Status == AccountStatus.Inactive && (Balance + depositAmount > 25m))
+            if (Status == AccountStatus.Inactive && ((Balance + depositAmount) > 25m))
             {
                 Status = AccountStatus.Active;
             }

@@ -6,6 +6,47 @@ namespace BankAccountTests
     class ASavingsAccount
     {
         [Test]
+        public void ShouldSetBalanceAndAnnualInterestRateWhenConstructed() {
+
+            // Arrange
+            decimal initialBalance = 100m;
+            double annualInterestRate = 0.05;
+
+            // Act
+            var sut = new SavingsAccount(initialBalance, annualInterestRate);
+
+            // Assert
+            Assert.That(sut.Balance, Is.EqualTo(initialBalance));
+            Assert.That(sut.AnnualInterestRate, Is.EqualTo(annualInterestRate));
+        }
+
+        [Test]
+        public void ShouldSetStatusBasedOnBalance()
+        {
+            // Test when Balance > 25
+            // Arrange
+            decimal initialBalance = 100m;
+            double annualInterestRate = 0.05;
+
+            // Act 
+            var sut = new SavingsAccount (initialBalance, annualInterestRate);
+
+            // Assert
+            Assert.That(sut.Status, Is.EqualTo(SavingsAccount.AccountStatus.Active));
+
+            // Test when Balance is <= $25
+
+            // Arrange
+            initialBalance = 20m;
+
+            // Act
+            sut = new SavingsAccount(initialBalance, annualInterestRate);
+
+            // Assert
+            Assert.That(sut.Balance, Is.EqualTo(initialBalance));
+        }
+
+        [Test]
         public void WithdrawWhenAccountIsActiveAndShouldDecreaseBalance()
         {
             // Arrange 
@@ -28,7 +69,7 @@ namespace BankAccountTests
         }
 
         [Test]
-        public void WithdrawInactiveAccountShouldNotChagneBalance()
+        public void WithdrawInactiveAccountShouldNotChangeBalance()
         {
             // Arrange
             decimal initialBalance = 20m;
@@ -59,6 +100,21 @@ namespace BankAccountTests
             decimal expectedBalance = initialBalance + depositAmount;
             Assert.That(sut.Balance, Is.EqualTo(expectedBalance));
             Assert.That(sut.Status, Is.EqualTo(SavingsAccount.AccountStatus.Active));
+        }
+
+        [Test]
+        public void ShouldNotChangeStatusWhenDepositingInactiveAccountBelowThreshold()
+        {
+            // Arrange 
+            decimal initialBalance = 10m;
+            double annulInterestRate = 0.05;
+
+            // Act
+            var sut = new SavingsAccount (initialBalance, annulInterestRate);
+            sut.Deposit(10m);
+
+            // Assert
+            Assert.That(sut.Status, Is.EqualTo(SavingsAccount.AccountStatus.Inactive));
         }
 
         [Test]
@@ -106,6 +162,8 @@ namespace BankAccountTests
             Assert.That(sut.Status, Is.EqualTo(SavingsAccount.AccountStatus.Inactive));
         }
 
+        //  Tests for Edge cases
+
         [Test]
         public void DepositShouldNotAllowZeroOrNegativeAmount()
         {
@@ -129,7 +187,7 @@ namespace BankAccountTests
             var sut = new SavingsAccount(initialBalance, annualInterestRate);
 
             sut.Withdraw(0m);
-            sut.Withdraw(-65m);
+            sut.Withdraw(-95m);
 
             Assert.That(sut.Balance, Is.EqualTo(initialBalance));
         }
@@ -153,9 +211,6 @@ namespace BankAccountTests
                 Assert.That(sut.Balance, Is.EqualTo(testCase.expectedBalanceAfterInterest).Within(0.0001m));
 
             }
-
-
-
         }
 
         [Test]

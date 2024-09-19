@@ -18,11 +18,10 @@ public class ABankAccount
         //Assert
         Assert.That(sut.Balance, Is.EqualTo(initialBalance));
         Assert.That(sut.AnnualInterestRate, Is.EqualTo(annualInterestRate));
-
     }
 
     [Test]
-    public void ShouldIncreaseBalanceAfterDeposit()
+    public void ShouldIncreaseBalanceAndNumberOfDepositsWhenDeposited()
     {
         //Arrange
         decimal initialBalance = 100m;
@@ -36,13 +35,15 @@ public class ABankAccount
         sut.Deposit(depositAmount);
 
         // Post 1: Balance == Balance@pre + depositAmount
+        // Post 2: NumberOfDeposits == NumberOfDeposits@Pre + 1
         // Assert
-
         Assert.That(sut.Balance, Is.EqualTo(expectedAmount));
+        Assert.That(sut.NumberOfDeposits, Is.EqualTo(1));
     }
 
+
     [Test]
-    public void ShouldDecreaseBalanceAfterWithdrawal()
+    public void ShouldDecreaseBalanceAndNumberOfWithdrawalsWhenWithdrawed()
     {
         // Arrange
         decimal initialBalance = 100m;
@@ -50,16 +51,19 @@ public class ABankAccount
         var sut = new BankAccount(initialBalance,annualInterestRate);
 
         decimal withdrawAmount = 50m;
-        decimal expectedAmount = initialBalance - withdrawAmount;
+        decimal expectedAmountAfterWithdrawal = initialBalance - withdrawAmount;
 
         // Act
         sut.Withdraw(withdrawAmount);
 
         // Assert
-        // Post 2: Balance == Balance@pre - withdrawAmount
+        // Post 1: Balance == Balance@pre - withdrawAmount
+        // Post 1: NumberOfWithdrawals == NumberOfDeposits@Pre + 1
 
-        Assert.That(sut.Balance, Is.EqualTo(expectedAmount));
-        
+        // Assert
+        Assert.That(sut.Balance, Is.EqualTo(expectedAmountAfterWithdrawal));
+        Assert.That(sut.NumberOfWithdrawals, Is.EqualTo(1));
+
     }
 
     [Test]
@@ -105,6 +109,7 @@ public class ABankAccount
 
         decimal expectedBalanceBeforeInterest = initialBalance - withdrawAmount + depositAmount - monthlyServiceCharge;
         decimal expectedBalanceAfterInterest = expectedBalanceBeforeInterest * (1 + ((decimal)annualInterestRate / 12));
+
         // Assert
         Assert.That(sut.Balance, Is.EqualTo(expectedBalanceAfterInterest).Within(0.00001));
         Assert.That(sut.NumberOfDeposits, Is.EqualTo(0));
